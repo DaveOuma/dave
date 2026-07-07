@@ -1,16 +1,16 @@
 # Django
-Django>=4.2,<5.1
+Django
 
 # Environment variables
-python-decouple==3.8
+python-decouple
 
 # Database
-dj-database-url==2.1.0
-psycopg2-binary==2.9.9
+dj-database-url
+psycopg2-binary
 
 # Production server
-gunicorn==21.2.0
-whitenoise==6.6.0
+gunicorn
+whitenoise
 
 # Email (optional - for development)
-django-cors-headers==4.3.1
+django-cors-headers

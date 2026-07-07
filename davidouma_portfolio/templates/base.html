@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    
+    <!-- This prevents flash of light -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            // If 'light' is explicitly saved, use light. Otherwise, default to DARK.
+            if (theme !== 'light') {
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
+
+    <!-- ... rest of the head (meta tags, CSS links) ... -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>David Ouma · Software Engineer and Scientific Editor</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    
+</head>
+<body>
+
+    <!-- ==========================================
+    NAVBAR
+    ========================================== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="nav-logo">David<span>.</span></a>
+
+            <div class="nav-links" role="menubar">
+                <a href="#home" role="menuitem" class="active">Home</a>
+                <a href="#about" role="menuitem">About</a>
+                <a href="#services" role="menuitem">Services</a>
+                <a href="#projects" role="menuitem">Projects</a>
+                <a href="#experience" role="menuitem">Experience</a>
+                <a href="#publications" role="menuitem">Publications</a>
+                <a href="#blog" role="menuitem">Blog</a>
+                <a href="#contact" role="menuitem">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- ==========================================
+    HERO
+    ========================================== -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="orb"></div>
+            <div class="orb"></div>
+        </div>
+
+        <div class="float-icons">
+            <i class="fab fa-python icon"></i>
+            <i class="fab fa-js icon"></i>
+            <i class="fas fa-database icon"></i>
+            <i class="fab fa-react icon"></i>
+            <i class="fas fa-cloud icon"></i>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <h1>David <span>Ouma</span></h1>
+                <div class="hero-typing" id="typing"></div>
+                <p class="hero-description">
+                    Software Engineer · Scientific Editor · Educationist · Technology Consultant
+                    <br />Building scalable systems, payment platforms, and digital solutions.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Hire Me
+                    </a>
+                    <a href="#projects" class="btn btn-outline">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-file-pdf"></i> Download CV
+                    </a>
+                    <a href="#contact" class="btn btn-success btn-sm">
+                        <i class="fas fa-calendar-check"></i> Book Consultation
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="avatar">
+                    <span>DO</span>
+                    <div class="avatar-ring"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    ABOUT
+    ========================================== -->
+    <section id="about">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">About Me</div>
+                <h2 class="section-title">Engineering the future,<br />one system at a time.</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text reveal-left">
+                    <p>
+                        I am a <strong>Software Engineer</strong> specializing in scalable backend systems, with a passion for
+                        building robust APIs, payment gateways, and educational platforms. I bring a unique blend of technical
+                        depth and editorial precision — having reviewed and improved scholarly publications as a
+                        <strong>Scientific Editor</strong>.
+                    </p>
+                    <p>
+                        As an <strong>Educationist</strong>, I'm deeply interested in technology-enhanced learning,
+                        designing systems that make education accessible, engaging, and data-driven. I work across the
+                        stack, from Django and Python backends to React frontends, always with an eye for clean code,
+                        security, and user experience.
+                    </p>
+                    <p>
+                        I am also a <strong>Technology Consultant</strong>, helping organizations architect digital solutions,
+                        integrate payment systems (Pesapal, M-Pesa, Stripe), and adopt cloud-native practices.
+                    </p>
+
+                    <div class="about-interests">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Go</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Dart with Flutter</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MongoDB</span>    
+                        <span class="tag">AI</span>
+                        <span class="tag">EdTech</span>
+                        <span class="tag">FinTech</span>
+                        <span class="tag">Cloud Computing</span>
+                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Technical Writing, Copyediting, Proofreading, and Editing</span>
+                    </div>
+                </div>
+
+                <div class="about-stats reveal-right">
+                    <div class="stat">
+                        <div class="number counter" data-target="7">0</div>
+                        <div class="label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number counter" data-target="50">0</div>
+                        <div class="label">Projects Delivered</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number counter" data-target="30">0</div>
+                        <div class="label">Publications Edited</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    SERVICES
+    ========================================== -->
+    <section id="services" style="background:rgba(0,0,0,0.005);">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">What I Do</div>
+                <h2 class="section-title">Services</h2>
+                <p class="section-subtitle">End-to-end solutions from architecture to deployment.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal" style="transition-delay:0.05s;">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>Software Development</h3>
+                    <p>Full-cycle custom software built with Python, Django, and modern frameworks.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.10s;">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <h3>Backend Development</h3>
+                    <p>Scalable, secure server-side logic, REST APIs, and microservices.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.15s;">
+                    <div class="icon"><i class="fas fa-plug"></i></div>
+                    <h3>API Development</h3>
+                    <p>Well-documented RESTful and GraphQL APIs with authentication &amp; rate-limiting.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.20s;">
+                    <div class="icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h3>Scientific Editing</h3>
+                    <p>Expert review, formatting, and language polishing for scholarly publications.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.25s;">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Journal Formatting</h3>
+                    <p>Manuscript preparation adhering to journal-specific style guides:Ensuring APA, MLA, Chicago, and other formats.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.30s;">
+                    <div class="icon"><i class="fas fa-flask"></i></div>
+                    <h3>Research Assistance</h3>
+                    <p>Literature reviews, data analysis, and research methodology support.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.35s;">
+                    <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Education Consultancy</h3>
+                    <p>Designing technology-enhanced learning experiences and EdTech strategies.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.40s;">
+                    <div class="icon"><i class="fas fa-globe"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Responsive, high-performance web applications with Next.js &amp; Tailwind.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.45s;">
+                    <div class="icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Payment Gateway Integration</h3>
+                    <p>Seamless integration with Pesapal, M-Pesa, Stripe, and PayPal.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.50s;">
+                    <div class="icon"><i class="fas fa-book"></i></div>
+                    <h3>Technical Documentation</h3>
+                    <p>Clear, comprehensive docs for APIs, systems, and user guides.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.55s;">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h3>Code Review</h3>
+                    <p>Thorough code audits for quality, security, and performance.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.60s;">
+                    <div class="icon"><i class="fas fa-sitemap"></i></div>
+                    <h3>System Architecture</h3>
+                    <p>Designing resilient, scalable architectures for enterprise systems.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.65s;">
+                    <div class="icon"><i class="fas fa-database"></i></div>
+                    <h3>Database Design</h3>
+                    <p>Optimized schema design, indexing, and data modeling.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay:0.70s;">
+                    <div class="icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Deployment</h3>
+                    <p>CI/CD pipelines, containerization, and cloud deployment on AWS, Vercel, etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    SKILLS
+    ========================================== -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Expertise</div>
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <p class="section-subtitle">Tools and frameworks I work with daily.</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-group reveal">
+                    <h4>Languages</h4>
+                    <div class="skill-items">
+                        <span class="skill">Python</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">TypeScript</span>
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal" style="transition-delay:0.06s;">
+                    <h4>Frameworks</h4>
+                    <div class="skill-items">
+                        <span class="skill">Django</span>
+                        <span class="skill">Django REST</span>
+                        <span class="skill">React</span>
+                        <span class="skill">Next.js</span>
+                        <span class="skill">Tailwind</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal" style="transition-delay:0.12s;">
+                    <h4>Databases</h4>
+                    <div class="skill-items">
+                        <span class="skill">PostgreSQL</span>
+                        <span class="skill">SQLite</span>
+                        <span class="skill">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal" style="transition-delay:0.18s;">
+                    <h4>Tools &amp; Cloud</h4>
+                    <div class="skill-items">
+                        <span class="skill">Git</span>
+                        <span class="skill">GitHub</span>
+                        <span class="skill">Docker</span>
+                        <span class="skill">Vercel</span>
+                        <span class="skill">VS Code</span>
+                        <span class="skill">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    PROJECTS
+    ========================================== -->
+    <section id="projects">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Real-world systems I've built and contributed to.</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="thumb"><span class="placeholder">Umoja</span></div>
+                    <div class="body">
+                        <h3>Umoja Educational Tuition Centre</h3>
+                        <p>Full-featured learning management platform with student tracking, payments, and reporting.</p>
+                        <div class="techs">
+                            <span>Django</span><span>React</span><span>PostgreSQL</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay:0.08s;">
+                    <div class="thumb"><span class="placeholder">LMS</span></div>
+                    <div class="body">
+                        <h3>Online Learning Management System</h3>
+                        <p>Scalable EdTech platform with course authoring, video streaming, and assessment tools.</p>
+                        <div class="techs">
+                            <span>Next.js</span><span>Django</span><span>Tailwind</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay:0.16s;">
+                    <div class="thumb"><span class="placeholder"> Pesapal</span></div>
+                    <div class="body">
+                        <h3>Pesapal Payment Gateway</h3>
+                        <p>Secure payment integration for African businesses with support for mobile money and cards.</p>
+                        <div class="techs">
+                            <span>Python</span><span>Django</span><span>Pesapal API</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay:0.24s;">
+                    <div class="thumb"><span class="placeholder">SIS</span></div>
+                    <div class="body">
+                        <h3>Student Information System</h3>
+                        <p>Comprehensive school management with enrollment, grading, attendance, and parent portals.</p>
+                        <div class="techs">
+                            <span>Django REST</span><span>React</span><span>PostgreSQL</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay:0.32s;">
+                    <div class="thumb"><span class="placeholder">API</span></div>
+                    <div class="body">
+                        <h3>REST API Backend</h3>
+                        <p>High-performance API with JWT authentication, rate limiting, and comprehensive documentation.</p>
+                        <div class="techs">
+                            <span>Django REST</span><span>PostgreSQL</span><span>Swagger</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay:0.40s;">
+                    <div class="thumb"><span class="placeholder">PubManager</span></div>
+                    <div class="body">
+                        <h3>Scientific Publication Management</h3>
+                        <p>End-to-end platform for managing peer review, publishing workflows, and DOIs.</p>
+                        <div class="techs">
+                            <span>Django</span><span>Next.js</span><span>Tailwind</span>
+                        </div>
+                        <div class="links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#"><i class="fas fa-book"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    EXPERIENCE
+    ========================================== -->
+    <section id="experience" style="background:rgba(0,0,0,0.005);">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Career</div>
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">A timeline of professional milestones.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal-left">
+                    <div class="date">2022 — 2024</div>
+                    <h3>Senior Software Engineer</h3>
+                    <div class="role">UETC &amp; PLP Academy· Remote</div>
+                    <p>Leading backend development for payment platforms and educational systems. Architecting APIs, integrating M-Pesa and Pesapal, and mentoring junior engineers.</p>
+                </div>
+                <div class="timeline-item reveal-left" style="transition-delay:0.08s;">
+                    <div class="date">2020 — 2025</div>
+                    <h3>Scientific Editor &amp; Research Consultant</h3>
+                    <div class="role">Academic Publishing · Nairobi</div>
+                    <p>Edited and formatted over 50 scholarly publications. Provided research support, data analysis, and manuscript preparation for international journals.</p>
+                </div>
+                <div class="timeline-item reveal-left" style="transition-delay:0.16s;">
+                    <div class="date">2018 — 2020</div>
+                    <h3>Education Technology Specialist</h3>
+                    <div class="role">UETC Startup · Remote</div>
+                    <p>Designed and implemented technology-enhanced learning solutions. Built student information systems and online assessment platforms.</p>
+                </div>
+                <div class="timeline-item reveal-left" style="transition-delay:0.24s;">
+                    <div class="date">2016 — 2018</div>
+                    <h3>Backend Developer</h3>
+                    <div class="role">Digital Solutions Agency · Nairobi</div>
+                    <p>Developed RESTful APIs and database architectures for client projects. Integrated third-party services and payment gateways.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    PUBLICATIONS
+    ========================================== -->
+    <section id="publications">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Research</div>
+                <h2 class="section-title">Publications</h2>
+                <p class="section-subtitle">Peer-reviewed articles, journals, and conference proceedings.</p>
+            </div>
+
+            <div class="publication-filters reveal">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="software">Software Engineering</button>
+                <button data-filter="edtech">EdTech</button>
+                <button data-filter="fintech">FinTech</button>
+                <button data-filter="ai">AI &amp; Data</button>
+            </div>
+
+            <div class="publications-list">
+                <div class="publication-item reveal" data-category="software">
+                    <div class="info">
+                        <h4>Scalable Microservices Architecture for Payment Systems</h4>
+                        <div class="journal">Journal of FinTech Engineering · 2024</div>
+                        <div class="doi">DOI: 10.1234/jfe.2024.001</div>
+                    </div>
+                    <div class="actions">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> DOI</a>
+                    </div>
+                </div>
+                <div class="publication-item reveal" style="transition-delay:0.06s;" data-category="edtech">
+                    <div class="info">
+                        <h4>Technology-Enhanced Learning in Sub-Saharan Africa</h4>
+                        <div class="journal">International Journal of Educational Development · 2023</div>
+                        <div class="doi">DOI: 10.1234/ijed.2023.045</div>
+                    </div>
+                    <div class="actions">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> DOI</a>
+                    </div>
+                </div>
+                <div class="publication-item reveal" style="transition-delay:0.12s;" data-category="fintech">
+                    <div class="info">
+                        <h4>Digital Payments and Financial Inclusion in East Africa</h4>
+                        <div class="journal">African Journal of FinTech · 2023</div>
+                        <div class="doi">DOI: 10.1234/ajft.2023.012</div>
+                    </div>
+                    <div class="actions">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> DOI</a>
+                    </div>
+                </div>
+                <div class="publication-item reveal" style="transition-delay:0.18s;" data-category="ai">
+                    <div class="info">
+                        <h4>Natural Language Processing for Automated Scientific Editing</h4>
+                        <div class="journal">Journal of Computational Linguistics · 2022</div>
+                        <div class="doi">DOI: 10.1234/jcl.2022.089</div>
+                    </div>
+                    <div class="actions">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> DOI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    TESTIMONIALS
+    ========================================== -->
+    <section id="testimonials" style="background:rgba(0,0,0,0.005);">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Testimonials</div>
+                <h2 class="section-title">What People Say</h2>
+                <p class="section-subtitle">Feedback from clients, collaborators, and institutions.</p>
+            </div>
+
+            <div class="testimonials-carousel">
+                <div class="testimonial-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"David built our entire payment infrastructure from scratch. His attention to security and performance is remarkable. A true professional."</blockquote>
+                    <div class="author">
+                        <div class="initials">HO</div>
+                        <div>
+                            <div class="name">Hezron Onyango</div>
+                            <div class="title"> MRM </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay:0.08s;">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Working with David on our education platform was seamless. He understands both the technical and pedagogical aspects deeply. Highly recommend."</blockquote>
+                    <div class="author">
+                        <div class="initials">SK</div>
+                        <div>
+                            <div class="name">Sarah Kariuki</div>
+                            <div class="title">Ass. Director, Mwangaza Academy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay:0.16s;">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"David's scientific editing elevated our manuscript to a new level. He's meticulous, fast, and understands the publishing process inside out."</blockquote>
+                    <div class="author">
+                        <div class="initials">PO</div>
+                        <div>
+                            <div class="name">Dr. Peter Odhiambo</div>
+                            <div class="title">Researcher, University of Nairobi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    BLOG
+    ========================================== -->
+    <section id="blog">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Insights</div>
+                <h2 class="section-title">Blog</h2>
+                <p class="section-subtitle">Thoughts on software, research, education, and technology.</p>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card reveal">
+                    <div class="thumb"><i class="fas fa-robot"></i></div>
+                    <div class="body">
+                        <div class="category">AI &amp; Research</div>
+                        <h3>How AI is Transforming Scientific Editing</h3>
+                        <p>Exploring the intersection of NLP and academic publishing — from grammar checkers to semantic review.</p>
+                        <div class="meta">March 15, 2025 · 6 min read</div>
+                    </div>
+                </div>
+                <div class="blog-card reveal" style="transition-delay:0.08s;">
+                    <div class="thumb"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="body">
+                        <div class="category">Education</div>
+                        <h3>Building Scalable EdTech Platforms for Emerging Markets</h3>
+                        <p>Lessons from deploying learning management systems in resource-constrained environments.</p>
+                        <div class="meta">February 28, 2025 · 8 min read</div>
+                    </div>
+                </div>
+                <div class="blog-card reveal" style="transition-delay:0.16s;">
+                    <div class="thumb"><i class="fas fa-credit-card"></i></div>
+                    <div class="body">
+                        <div class="category">FinTech</div>
+                        <h3>Integrating Mobile Payments in Django Applications</h3>
+                        <p>A step-by-step guide to adding M-Pesa and Pesapal support to your Django backend.</p>
+                        <div class="meta">February 10, 2025 · 10 min read</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    DONATE
+    ========================================== -->
+    <section id="donate" style="background:rgba(0,0,0,0.005);">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Support</div>
+                <h2 class="section-title">Donate</h2>
+                <p class="section-subtitle">You can support my software development, research, and educational
+        initiatives through my secure payment platform.</p>
+            </div>
+
+            <div class="donate-grid">
+                <!-- M-Pesa -->
+                <div class="donate-card reveal">
+                    <h3><i class="fas fa-mobile-alt" style="color:var(--secondary);margin-right:10px;"></i> M-Pesa</h3>
+                    <p class="sub">Send via M-Pesa Till Number</p>
+
+                    <div class="qr-placeholder">
+                        <span>QR Code</span>
+                    </div>
+
+                    <div class="till-box">
+                        <span class="till">4655378</span>
+                        <button onclick="copyTill()"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+
+                    <ul class="steps">
+                        <li>Open M-Pesa &amp; select <strong>Lipa Na M-Pesa</strong></li>
+                        <li>Choose <strong>Till Number</strong> &amp; enter </li>
+                        <li>Enter Till Number: <strong>4655378</strong></li>
+                        <li>Enter amount &amp; complete the transaction</li>
+                    </ul>
+                </div>
+
+                <!-- Online Gateway -->
+                <div class="donate-card reveal" style="transition-delay:0.08s;">
+                    <h3><i class="fas fa-credit-card" style="color:var(--accent);margin-right:10px;"></i> Online</h3>
+                    <p class="sub">
+    Secure card &amp; mobile payments via
+    <a href="https://uetc-payment-system.vercel.app"
+       target="_blank"
+       rel="noopener noreferrer">
+        UETC Payment System
+    </a>
+</p>
+
+                    <p style="opacity:0.6;margin-bottom:20px;font-size:0.95rem;">
+                        Powered by Pesapal, M-Pesa Daraja API, Stripe, and PayPal.
+                    </p>
+
+                    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+                        <span style="padding:6px 16px;border-radius:50px;background:rgba(0,0,0,0.03);font-size:0.8rem;border:1px solid rgba(0,0,0,0.04);">Pesapal</span>
+                        <span style="padding:6px 16px;border-radius:50px;background:rgba(0,0,0,0.03);font-size:0.8rem;border:1px solid rgba(0,0,0,0.04);">M-Pesa</span>
+                        <span style="padding:6px 16px;border-radius:50px;background:rgba(0,0,0,0.03);font-size:0.8rem;border:1px solid rgba(0,0,0,0.04);">Stripe</span>
+                        <span style="padding:6px 16px;border-radius:50px;background:rgba(0,0,0,0.03);font-size:0.8rem;border:1px solid rgba(0,0,0,0.04);">PayPal</span>
+                    </div>
+
+                    <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">
+                        <i class="fas fa-heart"></i> Donate Online
+                    </a>
+                    <p style="font-size:0.75rem;opacity:0.4;margin-top:12px;text-align:center;">
+                        🔒 Secure · Encrypted · PCI Compliant
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    CONTACT
+    ========================================== -->
+    <section id="contact">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Connect</div>
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Let's collaborate on your next project, research, or idea.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <div class="label">Email</div>
+                            <div class="value">david.ouma@example.com</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="text">
+                            <div class="label">LinkedIn</div>
+                            <div class="value">linkedin.com/in/davidouma</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fab fa-github"></i></div>
+                        <div class="text">
+                            <div class="label">GitHub</div>
+                            <div class="value">github.com/davidouma</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fab fa-twitter"></i></div>
+                        <div class="text">
+                            <div class="label">Twitter / X</div>
+                            <div class="value">@davidouma</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <div class="label">Location</div>
+                            <div class="value">Nairobi, Kenya · GMT+3</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:20px;border-radius:12px;overflow:hidden;height:160px;background:rgba(0,0,0,0.03);display:flex;align-items:center;justify-content:center;font-size:0.85rem;opacity:0.4;border:1px solid rgba(0,0,0,0.04);">
+                        <span><i class="fas fa-map" style="margin-right:8px;"></i> Google Maps · Nairobi, Kenya</span>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal-right" onsubmit="event.preventDefault();alert('Thank you for your message, David will get back to you soon!');">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Email Address" required />
+                    <input type="text" placeholder="Subject" />
+                    <textarea placeholder="Your Message …" required></textarea>
+                    <button type="submit" class="btn btn-primary" style="align-self:flex-start;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 style="font-size:1.4rem;font-weight:800;">David<span style="color:var(--accent);">.</span></h3>
+                    <p>Software Engineer · Scientific Editor · Educationist · Technology Consultant</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#projects">Projects</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="#blog">Blog</a>
+                    <a href="#publications">Publications</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#donate">Donate</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <input type="email" placeholder="Newsletter" style="padding:10px 14px;border-radius:50px;border:1px solid rgba(0,0,0,0.06);background:rgba(0,0,0,0.01);width:100%;font-family:var(--font);font-size:0.85rem;" />
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 David Ouma. All rights reserved.</span>
+                <span>Built with <i class="fas fa-heart" style="color:var(--accent);"></i> · Next.js · Tailwind · Framer Motion</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+    BACK TO TOP
+    ========================================== -->
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ==========================================
+    JAVASCRIPT
+    ========================================== -->
+    
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

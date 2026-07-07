@@ -46,7 +46,7 @@ I enjoy combining technology, research, and education to create impactful digita
 
 ---
 
-# 🛠 Tech Stack
+# Tech Stack
 
 ## Languages
 

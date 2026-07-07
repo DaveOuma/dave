@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- HERO (static, as before) -->
+
+<!-- ABOUT (static) -->
+
+<!-- SERVICES (static) -->
+
+<!-- SKILLS (static) -->
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Real-world systems I've built and contributed to.</p>
+    </div>
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card reveal" style="transition-delay:{{ forloop.counter|add:"-1"|divisibleby:2|yesno:"0.08,0.16" }}s;">
+        <div class="thumb">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width:100%;height:100%;object-fit:cover;">
+          {% else %}
+            <span class="placeholder">{{ project.title|slice:":10" }}</span>
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="techs">
+            {% for tech in project.tech_list %}
+              <span>{{ tech }}</span>
+            {% endfor %}
+          </div>
+          <div class="links">
+            {% if project.github_link %}<a href="{{ project.github_link }}"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+            {% if project.demo_link %}<a href="{{ project.demo_link }}"><i class="fas fa-external-link-alt"></i> Live Demo</a>{% endif %}
+            {% if project.case_study_link %}<a href="{{ project.case_study_link }}"><i class="fas fa-book"></i> Case Study</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No projects yet. Add them via admin.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE (static) -->
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Research</div>
+      <h2 class="section-title">Publications</h2>
+      <p class="section-subtitle">Peer-reviewed articles, journals, and conference proceedings.</p>
+    </div>
+    <div class="publication-filters reveal">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="software">Software Engineering</button>
+      <button data-filter="edtech">EdTech</button>
+      <button data-filter="fintech">FinTech</button>
+      <button data-filter="ai">AI &amp; Data</button>
+    </div>
+    <div class="publications-list">
+      {% for pub in publications %}
+      <div class="publication-item reveal" data-category="{{ pub.category }}" style="transition-delay:{{ forloop.counter|add:"-1"|divisibleby:2|yesno:"0.06,0.12" }}s;">
+        <div class="info">
+          <h4>{{ pub.title }}</h4>
+          <div class="journal">{{ pub.journal }} · {{ pub.year }}</div>
+          {% if pub.doi %}<div class="doi">DOI: {{ pub.doi }}</div>{% endif %}
+        </div>
+        <div class="actions">
+          {% if pub.pdf_link %}<a href="{{ pub.pdf_link }}"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
+          {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}"><i class="fas fa-external-link-alt"></i> DOI</a>{% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <p>No publications yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:rgba(0,0,0,0.005);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What People Say</h2>
+      <p class="section-subtitle">Feedback from clients, collaborators, and institutions.</p>
+    </div>
+    <div class="testimonials-carousel">
+      {% for test in testimonials %}
+      <div class="testimonial-card reveal" style="transition-delay:{{ forloop.counter|add:"-1"|divisibleby:2|yesno:"0.08,0.16" }}s;">
+        <div class="stars">
+          {% for _ in "x"|rjust:test.rating %}
+            <i class="fas fa-star"></i>
+          {% endfor %}
+        </div>
+        <blockquote>"{{ test.content }}"</blockquote>
+        <div class="author">
+          <div class="initials">{{ test.author|slice:":2"|upper }}</div>
+          <div>
+            <div class="name">{{ test.author }}</div>
+            <div class="title">{{ test.title }}</div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No testimonials yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Insights</div>
+      <h2 class="section-title">Blog</h2>
+      <p class="section-subtitle">Thoughts on software, research, education, and technology.</p>
+    </div>
+    <div class="blog-grid">
+      {% for post in blog_posts %}
+      <div class="blog-card reveal" style="transition-delay:{{ forloop.counter|add:"-1"|divisibleby:2|yesno:"0.08,0.16" }}s;">
+        <div class="thumb">
+          {% if post.image %}<img src="{{ post.image.url }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;">{% else %}<i class="fas fa-newspaper"></i>{% endif %}
+        </div>
+        <div class="body">
+          <div class="category">{{ post.get_category_display }}</div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt|default:post.content|truncatechars:120 }}</p>
+          <div class="meta">{{ post.published_date|date:"F d, Y" }} · {{ post.content|wordcount|add:"-1"|default:"0"|add:"1" }} min read</div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No blog posts yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- DONATE (static) -->
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Connect</div>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-subtitle">Let's collaborate on your next project, research, or idea.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <!-- static contact info as in original -->
+      </div>
+      <form class="contact-form reveal-right" id="contactForm">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

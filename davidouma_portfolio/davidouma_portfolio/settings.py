@@ -26,7 +26,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key-change-in-pro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default=".vercel.app,localhost,127.0.0.1",
+    cast=lambda v: [host.strip() for host in v.split(",")],
+)
 
 
 # Application definition
@@ -92,6 +96,11 @@ if not DEBUG:
     )
 
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -127,7 +136,7 @@ USE_TZ = True #use timezone
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 #STATIC_URL is the URL where static files will be served
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 #STATIC_ROOT is the directory where static files will be collected
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -139,7 +148,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #MEDIA_URL is the URL where media files will be served
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 #MEDIA_ROOT is the directory where media files will be stored
 MEDIA_ROOT = BASE_DIR / 'media'
 

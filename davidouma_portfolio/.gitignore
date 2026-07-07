@@ -6,6 +6,12 @@ __pycache__/
 .Python
 *.so
 
+staticfiles/
+db.sqlite3
+.env
+__pycache__/
+*.pyc
+
 # Virtual environments
 venv/
 env/

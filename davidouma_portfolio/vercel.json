@@ -1,35 +1,15 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-
-  "functions": {
-    "manage.py": {
-      "runtime": "python3.13",
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  },
-
-  "rewrites": [
+  "builds": [
     {
-      "source": "/static/:path*",
-      "destination": "/static/:path*"
-    },
-    {
-      "source": "/media/:path*",
-      "destination": "/media/:path*"
-    },
-    {
-      "source": "/favicon.ico",
-      "destination": "/static/favicon.ico"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/manage.py"
+      "src": "manage.py",
+      "use": "@vercel/python"
     }
   ],
-
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "davidouma_portfolio.settings"
-  }
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "manage.py"
+    }
+  ]
 }

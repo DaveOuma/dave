@@ -1,5 +1,5 @@
 # Django
-Django
+Django>=4.2,<5.1
 
 # Environment variables
 python-decouple
@@ -8,9 +8,5 @@ python-decouple
 dj-database-url
 psycopg2-binary
 
-# Production server
-gunicorn
+# Static files
 whitenoise
-
-# Email (optional - for development)
-django-cors-headers

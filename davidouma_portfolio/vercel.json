@@ -1,15 +1,11 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput",
+  "outputDirectory": "staticfiles",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "manage.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "manage.py"
+      "source": "/(.*)",
+      "destination": "/api/index"
     }
   ]
 }

@@ -229,7 +229,8 @@ themeToggle.addEventListener('click', () => setTheme(!darkMode));
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
-                fetch("{% url 'core:contact_submit' %}", {
+                const contactUrl = this.dataset.contactUrl;
+                fetch(contactUrl, {
                     method: 'POST',
                     headers: {
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,

@@ -9,6 +9,8 @@ class ContactForm(forms.Form):
     def send_email(self):
         # send email logic--use settings
         from django.core.mail import send_mail
+        from django.conf import settings
+        
         subject = f"Portfolio Contact: {self.cleaned_data['subject'] or 'No subject'}"
         message = f"From: {self.cleaned_data['name']} <{self.cleaned_data['email']}>\n\n{self.cleaned_data['message']}"
-        send_mail(subject, message, 'noreply@example.com', ['davidomuga@gmail.com'])
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [settings.EMAIL_HOST_USER])

@@ -119,8 +119,11 @@ Set in **Project → Settings → Environment Variables** (Production):
 | `DEBUG` | `False` | **Yes** |
 | `ALLOWED_HOSTS` | `.vercel.app,your-custom-domain.com` | **Yes** |
 | `DATABASE_URL` | Auto-set when you add Vercel Postgres | Recommended |
-| `EMAIL_HOST_USER` | Gmail address | Optional |
-| `EMAIL_HOST_PASSWORD` | Gmail app password | Optional |
+| `EMAIL_HOST_USER` | Gmail address | **Yes** (for contact form) |
+| `EMAIL_HOST_PASSWORD` | Gmail [app password](https://support.google.com/accounts/answer/185833) (spaces OK) | **Yes** (for contact form) |
+| `CONTACT_EMAIL` | Inbox that receives contact submissions | Optional (defaults to `EMAIL_HOST_USER`) |
+
+When `EMAIL_HOST_PASSWORD` is set, Django automatically uses SMTP. You do **not** need to set `EMAIL_BACKEND` unless you want to override that behavior.
 
 `DJANGO_SETTINGS_MODULE` is **not** required — Vercel discovers it from `manage.py`.
 

@@ -1,8 +1,12 @@
 # Create your views here.
+import logging
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Project, Publication, Testimonial, BlogPost
 from .forms import ContactForm
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     projects = Project.objects.filter(is_active=True)
@@ -23,7 +27,17 @@ def contact_submit(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.send_email()
+            try:
+                form.send_email()
+            except Exception:
+                logger.exception('Contact form email failed')
+                return JsonResponse(
+                    {
+                        'success': False,
+                        'message': 'Could not send your message right now. Please email davidomuga@gmail.com directly.',
+                    },
+                    status=500,
+                )
             return JsonResponse({'success': True, 'message': 'Thank you! Your message has been sent.'})
         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
     return JsonResponse({'success': False, 'message': 'Invalid request'}, status=400)

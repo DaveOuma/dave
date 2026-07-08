@@ -237,16 +237,16 @@ themeToggle.addEventListener('click', () => setTheme(!darkMode));
                     },
                     body: formData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+                .then(async (response) => {
+                    const data = await response.json().catch(() => ({}));
+                    if (response.ok && data.success) {
                         alert(data.message);
                         this.reset();
-                    } else {
-                        alert('Error: ' + JSON.stringify(data.errors));
+                        return;
                     }
+                    alert(data.message || data.errors || 'Could not send your message. Please try again.');
                 })
-                .catch(err => alert('Network error. Please try again.'));
+                .catch(() => alert('Network error. Please try again.'));
             });
         }
 

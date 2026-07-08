@@ -7,10 +7,20 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
 
     def send_email(self):
-        # send email logic--use settings
-        from django.core.mail import send_mail
+        from django.core.mail import EmailMessage
         from django.conf import settings
-        
+
         subject = f"Portfolio Contact: {self.cleaned_data['subject'] or 'No subject'}"
-        message = f"From: {self.cleaned_data['name']} <{self.cleaned_data['email']}>\n\n{self.cleaned_data['message']}"
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [settings.EMAIL_HOST_USER])
+        body = (
+            f"Name: {self.cleaned_data['name']}\n"
+            f"Email: {self.cleaned_data['email']}\n\n"
+            f"{self.cleaned_data['message']}"
+        )
+        email = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.CONTACT_EMAIL],
+            reply_to=[self.cleaned_data['email']],
+        )
+        email.send(fail_silently=False)

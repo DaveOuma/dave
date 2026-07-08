@@ -112,11 +112,16 @@
                     </a>
                     
                     <a href="{% static 'documents/David_Ouma_CV_programming.pdf' %}"
-                       class="btn btn-secondary btn-sm"
-                          download="David_Ouma_CV_programming.pdf"
-                             target="_blank">
-                                 <i class="fas fa-file-pdf"></i> Download CV
-</a>
+                       id="cvDownloadBtn"
+                       class="btn btn-secondary btn-sm cv-download-btn"
+                       download="David_Ouma_CV_programming.pdf"
+                       data-default-label="Download CV"
+                       data-downloaded-label="CV Downloaded"
+                       data-repeat-label="Download Again"
+                       aria-label="Download CV">
+                        <i class="fas fa-file-pdf"></i>
+                        <span class="cv-download-label">Download CV</span>
+                    </a>
                     <a href="#contact" class="btn btn-success btn-sm">
                         <i class="fas fa-calendar-check"></i> Book Consultation
                     </a>

@@ -164,6 +164,20 @@
             font-size: 0.85rem;
         }
 
+        .cv-download-btn.is-downloaded {
+            background: var(--success);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .cv-download-btn.is-downloaded:hover {
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .cv-download-btn.is-busy {
+            pointer-events: none;
+            opacity: 0.75;
+        }
+
         /* ============================================
                    SECTION HEADERS
                    ============================================ */

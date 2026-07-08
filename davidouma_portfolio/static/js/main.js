@@ -250,6 +250,101 @@ themeToggle.addEventListener('click', () => setTheme(!darkMode));
             });
         }
 
+        // ============================================
+        // CV DOWNLOAD — track first successful download
+        // ============================================
+        const cvDownloadBtn = document.getElementById('cvDownloadBtn');
+        const CV_DOWNLOAD_KEY = 'cv_downloaded';
+
+        function setCvDownloadState(btn, state) {
+            const icon = btn.querySelector('i');
+            const label = btn.querySelector('.cv-download-label');
+            if (!icon || !label) return;
+
+            const isDownloaded = state === 'downloaded' || state === 'repeat';
+            btn.classList.toggle('is-downloaded', isDownloaded);
+
+            if (state === 'downloading') {
+                icon.className = 'fas fa-spinner fa-spin';
+                label.textContent = 'Downloading…';
+                btn.setAttribute('aria-label', 'Downloading CV');
+                return;
+            }
+
+            if (state === 'downloaded') {
+                icon.className = 'fas fa-check-circle';
+                label.textContent = btn.dataset.downloadedLabel || 'CV Downloaded';
+                btn.setAttribute('aria-label', 'CV downloaded successfully');
+                return;
+            }
+
+            if (state === 'repeat') {
+                icon.className = 'fas fa-redo';
+                label.textContent = btn.dataset.repeatLabel || 'Download Again';
+                btn.setAttribute('aria-label', 'Download CV again');
+                btn.title = 'You already downloaded this CV — click for another copy';
+                return;
+            }
+
+            icon.className = 'fas fa-file-pdf';
+            label.textContent = btn.dataset.defaultLabel || 'Download CV';
+            btn.setAttribute('aria-label', 'Download CV');
+            btn.removeAttribute('title');
+        }
+
+        async function triggerCvDownload(btn) {
+            const response = await fetch(btn.href);
+            if (!response.ok) throw new Error('Download failed');
+
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const tempLink = document.createElement('a');
+            tempLink.href = blobUrl;
+            tempLink.download = btn.getAttribute('download') || 'David_Ouma_CV_programming.pdf';
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            tempLink.remove();
+            URL.revokeObjectURL(blobUrl);
+        }
+
+        if (cvDownloadBtn) {
+            if (sessionStorage.getItem(CV_DOWNLOAD_KEY) === 'true') {
+                setCvDownloadState(cvDownloadBtn, 'repeat');
+            }
+
+            cvDownloadBtn.addEventListener('click', async (event) => {
+                event.preventDefault();
+
+                const alreadyDownloaded = sessionStorage.getItem(CV_DOWNLOAD_KEY) === 'true';
+                cvDownloadBtn.classList.add('is-busy');
+                setCvDownloadState(cvDownloadBtn, 'downloading');
+
+                try {
+                    await triggerCvDownload(cvDownloadBtn);
+                    sessionStorage.setItem(CV_DOWNLOAD_KEY, 'true');
+
+                    if (!alreadyDownloaded) {
+                        setCvDownloadState(cvDownloadBtn, 'downloaded');
+                        window.setTimeout(() => {
+                            setCvDownloadState(cvDownloadBtn, 'repeat');
+                        }, 2000);
+                    } else {
+                        setCvDownloadState(cvDownloadBtn, 'repeat');
+                    }
+                } catch {
+                    cvDownloadBtn.classList.remove('is-busy');
+                    setCvDownloadState(
+                        cvDownloadBtn,
+                        alreadyDownloaded ? 'repeat' : 'idle'
+                    );
+                    window.location.assign(cvDownloadBtn.href);
+                    return;
+                }
+
+                cvDownloadBtn.classList.remove('is-busy');
+            });
+        }
+
         console.log('David Ouma · Premium Portfolio · Built with L❤️ve');
         console.log('📧 davidomuga@gmail.com · 🔗 https://github.com/DaveOuma');
    

@@ -1,5 +1,8 @@
 {
-  "buildCommand": "cd davidouma_portfolio && pip install -r requirements.txt && python manage.py collectstatic --noinput",
-  "outputDirectory": "davidouma_portfolio/staticfiles",
-  "framework": "python"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "davidouma_portfolio/wsgi.py": {
+      "maxDuration": 60
+    }
+  }
 }

@@ -1,2 +1,0 @@
-[tool.vercel]
-entrypoint = "davidouma_portfolio.api.index:app"

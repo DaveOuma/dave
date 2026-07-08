@@ -1,12 +1,5 @@
-# Django
-Django>=4.2,<5.1
-
-# Environment variables
+Django>=6.0,<6.1
 python-decouple
-
-# Database
 dj-database-url
 psycopg2-binary
-
-# Static files
 whitenoise

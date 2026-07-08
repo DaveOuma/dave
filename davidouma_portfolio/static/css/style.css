@@ -799,14 +799,118 @@
         }
         .project-card .thumb {
             height: 200px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(20, 184, 166, 0.08));
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(20, 184, 166, 0.08));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--accent);
             position: relative;
             overflow: hidden;
+        }
+        .project-card .thumb::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .project-card .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-thumb-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            z-index: 1;
+        }
+        .project-icon {
+            width: 92px;
+            height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2.6rem;
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.22);
+            box-shadow:
+                0 0 24px rgba(37, 99, 235, 0.35),
+                0 0 48px rgba(20, 184, 166, 0.18),
+                inset 0 0 20px rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+            position: relative;
+        }
+        .dark .project-icon {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(37, 99, 235, 0.35);
+        }
+        .project-icon::after {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, transparent 68%);
+            z-index: -1;
+            animation: projectIconGlow 3s ease-in-out infinite;
+        }
+        .project-icon.icon-edu {
+            color: #3b82f6;
+            box-shadow:
+                0 0 24px rgba(59, 130, 246, 0.4),
+                0 0 48px rgba(20, 184, 166, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.06);
+        }
+        .project-icon.icon-pay {
+            color: #14b8a6;
+            box-shadow:
+                0 0 24px rgba(20, 184, 166, 0.45),
+                0 0 48px rgba(37, 99, 235, 0.15),
+                inset 0 0 20px rgba(255, 255, 255, 0.06);
+        }
+        .project-icon.icon-api {
+            color: #8b5cf6;
+            box-shadow:
+                0 0 24px rgba(139, 92, 246, 0.4),
+                0 0 48px rgba(37, 99, 235, 0.15),
+                inset 0 0 20px rgba(255, 255, 255, 0.06);
+        }
+        .project-icon.emoji {
+            font-size: 3.4rem;
+            line-height: 1;
+            filter: drop-shadow(0 0 14px rgba(37, 99, 235, 0.55));
+        }
+        .project-card:hover .project-icon {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow:
+                0 0 32px rgba(37, 99, 235, 0.55),
+                0 0 64px rgba(20, 184, 166, 0.28),
+                inset 0 0 24px rgba(255, 255, 255, 0.08);
+        }
+        .project-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            opacity: 0.55;
+        }
+        @keyframes projectIconGlow {
+            0%,
+            100% {
+                opacity: 0.55;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
         }
         .project-card .thumb .placeholder {
             font-size: 0.85rem;

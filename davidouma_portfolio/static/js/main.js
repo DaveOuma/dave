@@ -300,7 +300,7 @@ themeToggle.addEventListener('click', () => setTheme(!darkMode));
             const blobUrl = URL.createObjectURL(blob);
             const tempLink = document.createElement('a');
             tempLink.href = blobUrl;
-            tempLink.download = btn.getAttribute('download') || 'David_Ouma_CV_programming.pdf';
+            tempLink.download = btn.getAttribute('download') || 'David_Ouma_Resume_Bilingual.pdf';
             document.body.appendChild(tempLink);
             tempLink.click();
             tempLink.remove();
@@ -345,6 +345,6 @@ themeToggle.addEventListener('click', () => setTheme(!darkMode));
             });
         }
 
-        console.log('David Ouma · Premium Portfolio · Built with L❤️ve');
+        console.log('David Ouma · Premium Portfolio · Built for Success');
         console.log('📧 davidomuga@gmail.com · 🔗 https://github.com/DaveOuma');
    
